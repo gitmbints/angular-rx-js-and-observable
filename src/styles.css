@@ -1,10 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
 }
 
-body{
-    font-family: 'Lucida Sans';
+body {
+	font-family: "Lucida Sans";
+}
+
+.data-list {
+	padding: 15px 50px;
+	/* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+	margin: 5px 0px;
+	border-radius: 5px;
+	font-weight: bold;
+	background-color: #efefef;
 }
