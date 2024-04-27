@@ -13,7 +13,7 @@ export class AppComponent implements AfterViewInit {
 
 	@ViewChild("createbtn") createbtn: ElementRef;
 
-	createBtnObservable;
+	// createBtnObservable;
 
 	array1 = [1, 2, 3, 4, 5];
 	array2 = ["A", "B", "C", "D", "F"];

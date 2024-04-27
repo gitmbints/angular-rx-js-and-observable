@@ -1,3 +1,4 @@
+import { TaskService } from './../Services/task.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class NewTaskComponent {
   newTask: string = '';
+
+  constructor(private taskService: TaskService) {}
+
+  onCreateNewTask() {
+    this.taskService.OnCreateTask(this.newTask);
+  }
 }
