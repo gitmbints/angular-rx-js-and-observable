@@ -1,5 +1,5 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { AsyncSubject } from 'rxjs';
 
 @Component({
   selector: 'app-subject',
@@ -8,38 +8,31 @@ import { AsyncSubject } from 'rxjs';
 })
 export class SubjectComponent implements OnInit{
   ngOnInit(): void {
-    // Async Subject
-    const asyncSubject = new AsyncSubject();
+    // Observable vs Promise
 
-    asyncSubject.next(100);
-    asyncSubject.next(200);
-    asyncSubject.complete();
-    asyncSubject.next(300);
-
-    asyncSubject.subscribe({
-      next: (data: number) => {
-        console.log(`Subscriber 1: ${data}`);
-      },
-      complete: () => {
-        console.log('Subscriber complete method.');
-      }
+    // Create a Promise
+    const promise = new Promise((resolve, reject) => {
+      console.log('Promise is called');
+      resolve(400);
     });
 
-    asyncSubject.subscribe({
-      next: (data: number) => {
-        console.log(`Subscriber 2: ${data}`);
-      },
-      complete: () => {
-        console.log('Subscriber 2 complete method.');
-      }
+    // Consume a promise
+    promise.then((value) => {
+      console.log(value);
+      console.log('Promise is resolved');
     });
 
-    asyncSubject.subscribe({
-      next: (data: number) => {
-        console.log(`Subscriber 3: ${data}`);
-      },
-      complete: () => {
-        console.log('Subscriber 3 complete method.');
+    // Create an Observable
+    const observable = new Observable((observer) => {
+      console.log('Observable is called');
+      observer.next(200);
+    });
+
+    // Subscribe to an Observable
+    observable.subscribe({
+      next: (value) => {
+        console.log(value);
+        console.log('Observable subscribed');
       }
     });
   }
