@@ -1,14 +1,34 @@
 <h1>Unsubscribing to an Observable</h1>
 <div class="div-container">
-    <div class="sub-container">
-        <h2>Subscriber 1</h2>
-        <hr />
-        <div class="data-list" *ngFor="let x of [10, 20, 30, 40]">
-            {{ x }}
-        </div>
-        <button>Subscribe</button>
-        <button>Unsubscribe</button>
+  <div class="sub-container">
+    <h2>Subscriber 1</h2>
+    <hr />
+    <div class="data-list" *ngFor="let x of data1">
+        {{ x }}
     </div>
+    <button (click)="onSubscribe1()">Subscribe</button>
+    <button (click)="onUnsubscribe1()">Unsubscribe</button>
+  </div>
+
+  <div class="sub-container">
+    <h2>Subscriber 2</h2>
+    <hr />
+    <div class="data-list" *ngFor="let x of data2">
+        {{ x }}
+    </div>
+    <button (click)="onSubscribe2()">Subscribe</button>
+    <button (click)="onUnsubscribe2()">Unsubscribe</button>
+  </div>
+
+  <div class="sub-container">
+    <h2>Subscriber 3</h2>
+    <hr />
+    <div class="data-list" *ngFor="let x of data3">
+        {{ x }}
+    </div>
+    <button (click)="onSubscribe3()">Subscribe</button>
+    <button (click)="onUnsubscribe3()">Unsubscribe</button>
+  </div>
 </div>
 
 
