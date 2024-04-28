@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
 @Component({
@@ -13,44 +13,36 @@ export class SubjectComponent implements OnInit{
       observer.next(Math.random());
     }); */
 
-    const obs = new Subject();
+    const obs = new ReplaySubject(2);
+
+    obs.next(100);
+    obs.next(200);
+    obs.next(300);
+
 
     // Subscriber 1
-    /* obs.subscribe({
+    obs.subscribe({
       next: (value) => {
-        console.log(value);
+        console.log("Subscriber 1: ", value);
       }
-    }); */
+    });
 
     // Subscriber 2
-   /*  obs.subscribe({
-      next: (value) => {
-        console.log(value);
-      }
-    }); */
-
-    // obs.next(Math.random());
-
-    const data = ajax('https://randomuser.me/api/');
-
     obs.subscribe({
       next: (value) => {
-        console.log(value);
+        console.log("Subscriber 2: ", value);
       }
     });
 
+    obs.next(Math.random());
+
+    // Subscriber 3
     obs.subscribe({
       next: (value) => {
-        console.log(value);
+        console.log("Subscriber 3: ", value);
       }
     });
 
-    obs.subscribe({
-      next: (value) => {
-        console.log(value);
-      }
-    });
-    // obs Subject is used as a consumer not as an emitter
-    data.subscribe(obs);
+    obs.next(45);
   }
 }
