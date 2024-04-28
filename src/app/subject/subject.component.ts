@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
+import { AsyncSubject } from 'rxjs';
 
 @Component({
   selector: 'app-subject',
@@ -9,40 +8,39 @@ import { ajax } from 'rxjs/ajax';
 })
 export class SubjectComponent implements OnInit{
   ngOnInit(): void {
-    /* const obs = new Observable((observer) => {
-      observer.next(Math.random());
-    }); */
+    // Async Subject
+    const asyncSubject = new AsyncSubject();
 
-    const obs = new ReplaySubject(2);
+    asyncSubject.next(100);
+    asyncSubject.next(200);
+    asyncSubject.complete();
+    asyncSubject.next(300);
 
-    obs.next(100);
-    obs.next(200);
-    obs.next(300);
-
-
-    // Subscriber 1
-    obs.subscribe({
-      next: (value) => {
-        console.log("Subscriber 1: ", value);
+    asyncSubject.subscribe({
+      next: (data: number) => {
+        console.log(`Subscriber 1: ${data}`);
+      },
+      complete: () => {
+        console.log('Subscriber complete method.');
       }
     });
 
-    // Subscriber 2
-    obs.subscribe({
-      next: (value) => {
-        console.log("Subscriber 2: ", value);
+    asyncSubject.subscribe({
+      next: (data: number) => {
+        console.log(`Subscriber 2: ${data}`);
+      },
+      complete: () => {
+        console.log('Subscriber 2 complete method.');
       }
     });
 
-    obs.next(Math.random());
-
-    // Subscriber 3
-    obs.subscribe({
-      next: (value) => {
-        console.log("Subscriber 3: ", value);
+    asyncSubject.subscribe({
+      next: (data: number) => {
+        console.log(`Subscriber 3: ${data}`);
+      },
+      complete: () => {
+        console.log('Subscriber 3 complete method.');
       }
     });
-
-    obs.next(45);
   }
 }
